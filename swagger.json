@@ -1,0 +1,225 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": " User Authentication",
+        "description": " User Authentication APIs.",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Chicmic team"
+        },
+        "license": {
+            "name": "MIT"
+        }
+    },
+    "paths": {
+        "/signup": {
+            "post": {
+                "tags": [
+                    "pet"
+                ],
+                "summary": "Updates a pet in the store with form data",
+                "operationId": "updatePetWithForm",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "useData",
+                        "schema": {
+                            "$ref": "#/definitions/Signup"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string",
+                            "items": {
+                                "$ref": "#/definitions/Signup"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid tag value"
+                    }
+                }
+            }
+        },
+        "/signin": {
+            "post": {
+                "summary": "Authencation sucessful",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "userData",
+                        "schema": {
+                            "$ref": "#/definitions/Signin"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string",
+                            "items": {
+                                "$ref": "#/definitions/Signin"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "your email and password did not match "
+                    }
+                }
+            }
+        },
+        "/user/{id}": {
+            "get": {
+                "summary": "getUser",
+                "parameters": [
+                    {
+                        "in": "header",
+                        "name": "authorization",
+                        "type": "string",
+                        "description": "Your's JWT token.",
+                        "required": true
+                    },
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "type": "string",
+                        "description": "getUser Information",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Token"
+                    }
+                }
+            }
+        },
+        "/me/delete": {
+            "post": {
+                "summary": "deleteMe",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "authencation",
+                        "type": "string",
+                        "description":"your email and password",
+                        "required":true
+                    }   
+                ],
+                "responses":{
+                    "200" : {
+                        "description":"user authencation",
+                        "schema" :{
+                            "type":"string"
+                        }
+                    },
+                    "400":{
+                        "description":"your email and password does not match"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Signup": {
+            "type": "object",
+            "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "password",
+                "role"
+            ],
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "description": "firstName of the user",
+                    "required": true
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "lastName of the user"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "email of the user",
+                    "format": "email"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "password of the user",
+                    "format": "password"
+                },
+                "role": {
+                    "type": "string",
+                    "descrition": "role of the user"
+                }
+            }
+        },
+        "signin": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "email of the user",
+                    "format": "email"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "password of the user",
+                    "format": "password"
+                }
+            }
+        },
+        "user/:id": {
+            "required": [
+                "Authorization",
+                "path"
+            ],
+            "properties": {
+                "Authorization": {
+                    "type": "string",
+                    "description": "jwt token"
+                },
+                "path": {
+                    "type": "string"
+                }
+            }
+        },
+        "me/delete":{
+            "required":[
+                "email",
+                "password"
+            ],
+            "properties":{
+                "email":{
+                    "type":"string",
+                    "description":"email of the user",
+                    "format":"email"
+                },
+                "password":{
+                    "type":"string",
+                    "description":"password of the user",
+                    "format":"password"
+                }
+            }
+        }
+    }
+}
