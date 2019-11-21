@@ -1,5 +1,5 @@
 const mongoose  = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/userdata', {useNewUrlParser: true});
+mongoose.connect('mongodb://anchal:anchal123@ds259802.mlab.com:59802/nextpagetest', { useUnifiedTopology: true, useNewUrlParser: true }  );
 
 let personData = new mongoose.Schema({
     firstName : String,
@@ -10,5 +10,4 @@ let personData = new mongoose.Schema({
     resetPasswordToken: { type: String },
     flag : {type : Number}
 })
- module.exports = mongoose.model("personData",personData);
- 
+module.exports = mongoose.model("personData",personData);

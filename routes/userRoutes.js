@@ -3,7 +3,6 @@ const middleware = require('../middleware/middlewares');
 
 
 module.exports = (app) => {
-
     app.route('/signup').get(controller.getSignUp)
     app.route('/signup').post(middleware.signup, controller.signUp)
     app.route('/signin').get(controller.signIn)
