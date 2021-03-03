@@ -25,7 +25,7 @@
     "multer": "^1.4.1",
     "node-mailer": "^0.1.1",
     "nodemailer": "^6.3.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "swagger-json": "^2.0.0",
     "swagger-ui-express": "^4.0.7"
   },
